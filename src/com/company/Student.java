@@ -7,6 +7,7 @@ public class Student
     String name;
     private Date birthday;
     private int height;
+    State state;
 
     public Date getBirthday() {
         return birthday;
@@ -25,27 +26,31 @@ public class Student
         this.name = name;
         this.setHeight(height);
         setBirthday(birthday);
-
     }
 
-    public void setHeight(int height) {
-        this.height = height < 30 || height > 300 ? 100 : height;
+    public Student(String name, Date birthday, User user) {
+        this.name = name;
+        setBirthday(birthday);
+        user.name = name;
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height < 45 || height > 280 ? -1 : height;
     }
 
     boolean Equals(Student student)
     {
-        if (name.equals(student.name) && birthday.compareTo(student.birthday) == 0 && height == student.height )
-            return true;
-
-        return false;
+        return this.name.equals(student.name) && this.birthday.compareTo(student.birthday) == 0 && this.height == student.height;
     }
 
     @Override
     public String toString() {
         return name + "\t(" + birthday.toGMTString() + "), height: " + height;
     }
+
+
 }
